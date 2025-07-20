@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eonova - Personaliza tu Ropa</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-tshirt"></i>
+                <span>Eonova</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li><a href="#productos" class="nav-link">Productos</a></li>
+                <li><a href="#personalizar" class="nav-link">Personalizar</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="nav-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Personaliza tu <span class="highlight">Estilo Único</span>
+            </h1>
+            <p class="hero-subtitle">
+                Crea ropa que refleje tu personalidad. Colores, estilos y estampados personalizados en tiempo real.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('productos')">
+                    <i class="fas fa-tshirt"></i>
+                    Ver Productos
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('personalizar')">
+                    <i class="fas fa-magic"></i>
+                    Personalizar Ahora
+                </button>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="floating-card">
+                <i class="fas fa-palette"></i>
+                <span>Diseño Único</span>
+            </div>
+            <div class="floating-card">
+                <i class="fas fa-shipping-fast"></i>
+                <span>Envío Rápido</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Section -->
+    <section id="productos" class="products">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <p class="section-subtitle">Elige tu base y personalízala a tu gusto</p>
+            
+            <div class="products-grid" id="productsGrid">
+                <!-- Los productos se cargarán dinámicamente -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Personalización Section -->
+    <section id="personalizar" class="customization">
+        <div class="container">
+            <h2 class="section-title">Personaliza tu Producto</h2>
+            <p class="section-subtitle">Crea algo único y especial</p>
+            
+            <div class="customization-container">
+                <div class="product-preview">
+                    <div class="preview-card">
+                        <div class="preview-image" id="previewImage">
+                            <i class="fas fa-tshirt"></i>
+                        </div>
+                        <h3 id="previewTitle">Selecciona un Producto</h3>
+                        <p id="previewPrice">$0.00</p>
+                    </div>
+                </div>
+                
+                <div class="customization-options">
+                    <div class="option-group">
+                        <h4>Color Principal</h4>
+                        <div class="color-picker" id="colorPicker">
+                            <!-- Colores se cargarán dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h4>Color Secundario</h4>
+                        <div class="color-picker" id="secondaryColorPicker">
+                            <!-- Colores se cargarán dinámicamente -->
+                        </div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h4>Estilo</h4>
+                        <select id="styleSelect" class="custom-select">
+                            <option value="">Selecciona un estilo</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h4>Estampado</h4>
+                        <select id="patternSelect" class="custom-select">
+                            <option value="">Selecciona un estampado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <h4>Talle</h4>
+                        <select id="sizeSelect" class="custom-select">
+                            <option value="">Selecciona un talle</option>
+                        </select>
+                    </div>
+                    
+                    <div class="price-breakdown">
+                        <div class="price-item">
+                            <span>Precio Base:</span>
+                            <span id="basePrice">$0.00</span>
+                        </div>
+                        <div class="price-item">
+                            <span>Color Secundario:</span>
+                            <span id="secondaryColorPrice">$0.00</span>
+                        </div>
+                        <div class="price-item">
+                            <span>Estampado:</span>
+                            <span id="patternPrice">$0.00</span>
+                        </div>
+                        <div class="price-item total">
+                            <span>Total:</span>
+                            <span id="totalPrice">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-primary btn-full" id="addToCartBtn" disabled>
+                        <i class="fas fa-cart-plus"></i>
+                        Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Carrito Modal -->
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Tu Carrito</h3>
+                <span class="close" onclick="closeCart()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="cartItems">
+                    <!-- Items del carrito se cargarán dinámicamente -->
+                </div>
+                <div class="cart-total">
+                    <span>Total:</span>
+                    <span id="cartTotal">$0.00</span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeCart()">Seguir Comprando</button>
+                <button class="btn btn-primary" onclick="checkout()">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Eonova</h4>
+                    <p>Tu tienda de ropa personalizable</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Productos</h4>
+                    <ul>
+                        <li><a href="#">Camisetas</a></li>
+                        <li><a href="#">Hoodies</a></li>
+                        <li><a href="#">Pantalones</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Soporte</h4>
+                    <ul>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Envíos</a></li>
+                        <li><a href="#">Devoluciones</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Eonova. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
